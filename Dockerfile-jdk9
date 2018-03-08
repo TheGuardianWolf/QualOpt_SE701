@@ -17,7 +17,11 @@ EXPOSE 3001
 
 RUN apt-get update
 
-RUN apt-get --yes --force-yes install nodejs bash
+RUN apt-get --yes install curl bash gnupg
+
+RUN curl -sL https://deb.nodesource.com/setup_9.x | /bin/bash
+
+RUN apt-get --yes install nodejs
 
 RUN npm install -g yarn
 
