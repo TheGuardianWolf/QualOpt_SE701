@@ -17,17 +17,13 @@ EXPOSE 3001
 
 RUN apt-get update
 
-RUN apt-get --yes install curl bash gnupg
+RUN apt-get --yes install curl bash gnupg build-essential
 
 RUN curl -sL https://deb.nodesource.com/setup_9.x | /bin/bash
 
 RUN apt-get --yes install nodejs
 
-RUN npm install -g yarn
-
-RUN yarn install
-
-RUN yarn run webpack:build
+RUN npm install -g yarn node-gyp
 
 # RUN ./mvnw -Pdev package
 

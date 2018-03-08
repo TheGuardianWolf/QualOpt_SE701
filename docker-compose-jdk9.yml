@@ -4,7 +4,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile-jdk9
-        command: /bin/bash -c './mvnw & yarn install && yarn start'
+        command: /bin/bash
         stdin_open: true
         tty: true
         environment:
