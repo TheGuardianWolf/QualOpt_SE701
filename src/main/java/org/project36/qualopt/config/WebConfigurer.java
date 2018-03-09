@@ -84,9 +84,9 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
          * for more information.
          */
         if (jHipsterProperties.getHttp().getVersion().equals(JHipsterProperties.Http.Version.V_2_0) &&
-            container instanceof UndertowEmbeddedServletContainerFactory) {
+            container instanceof UndertowServletWebServerFactory) {
 
-            ((UndertowEmbeddedServletContainerFactory) container)
+            ((UndertowServletWebServerFactory) container)
                 .addBuilderCustomizers(builder ->
                     builder.setServerOption(UndertowOptions.ENABLE_HTTP2, true));
         }
