@@ -11,9 +11,10 @@ import com.codahale.metrics.servlets.MetricsServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.embedded.*;
+//import org.springframework.boot.web.embedded.*;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory; 
 import org.springframework.boot.web.server.*;
+import org.springframework.boot.web.servlet.server.*;
 import org.springframework.boot.web.server.MimeMappings;
 import io.undertow.UndertowOptions;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
@@ -33,7 +34,7 @@ import javax.servlet.*;
  * Configuration of web application with Servlet 3.0 APIs.
  */
 @Configuration
-public class WebConfigurer implements ServletContextInitializer, EmbeddedServletContainerCustomizer {
+public class WebConfigurer implements ServletContextInitializer, WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
 
     private final Logger log = LoggerFactory.getLogger(WebConfigurer.class);
 
@@ -69,7 +70,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
      * Customize the Servlet engine: Mime types, the document root, the cache.
      */
     @Override
-    public void customize(ConfigurableEmbeddedServletContainer container) {
+    public void customize(ConfigurableServletWebServerFactory container) {
         MimeMappings mappings = new MimeMappings(MimeMappings.DEFAULT);
         // IE issue, see https://github.com/jhipster/generator-jhipster/pull/711
         mappings.add("html", "text/html;charset=utf-8");
@@ -94,7 +95,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         }
     }
 
-    private void setLocationForStaticAssets(ConfigurableEmbeddedServletContainer container) {
+    private void setLocationForStaticAssets(ConfigurableServletWebServerFactory container) {
         File root;
         String prefixPath = resolvePathPrefix();
         root = new File(prefixPath + "target/www/");
