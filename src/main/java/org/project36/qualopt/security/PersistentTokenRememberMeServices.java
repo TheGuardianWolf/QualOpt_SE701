@@ -27,7 +27,6 @@ import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 import java.util.Arrays;
 import java.util.Date;
-import javax.persistence.EntityNotFoundException;
 
 /**
  * Custom implementation of Spring Security's RememberMeServices.
@@ -183,13 +182,9 @@ public class PersistentTokenRememberMeServices extends
 
         PersistentToken token;
 
-        try {
-            token = persistentTokenRepository.getOne(presentedSeries);
-        }
-        catch (EntityNotFoundException entityNotFoundException) {
-            // No series match, so we can't authenticate using this cookie
-            throw new RememberMeAuthenticationException("No persistent token found for series id: " + presentedSeries);
-        }
+        token = persistentTokenRepository.findById(presentedSeries).orElseThrow(() -> {
+            return new RememberMeAuthenticationException("No persistent token found for series id: " + presentedSeries);
+        });
 
         // We have a match for this user/series combination
         log.info("presentedToken={} / tokenValue={}", presentedToken, token.getTokenValue());
