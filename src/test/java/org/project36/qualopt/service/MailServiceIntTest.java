@@ -45,7 +45,7 @@ public class MailServiceIntTest {
     private JavaMailSenderImpl javaMailSender;
 
     @Captor
-    private ArgumentCaptor messageCaptor;
+    private ArgumentCaptor<?> messageCaptor;
 
     private MailService mailService;
 

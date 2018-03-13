@@ -96,7 +96,9 @@ public class EmailResourceIntTest {
         // Validate the Email in the database
         List<Email> emailList = emailRepository.findAll();
         assertThat(emailList).hasSize(databaseSizeBeforeCreate + 1);
+        
         Email testEmail = emailList.get(emailList.size() - 1);
+        assertThat(testEmail).isNotNull();
     }
 
     @Test
