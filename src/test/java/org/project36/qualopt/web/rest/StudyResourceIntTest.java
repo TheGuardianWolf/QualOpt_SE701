@@ -19,13 +19,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Base64Utils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -236,7 +234,7 @@ public class StudyResourceIntTest {
         int databaseSizeBeforeUpdate = studyRepository.findAll().size();
 
         // Update the study
-        Study updatedStudy = studyRepository.findOne(study.getId());
+        Study updatedStudy = studyRepository.getOne(study.getId());
         updatedStudy
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)

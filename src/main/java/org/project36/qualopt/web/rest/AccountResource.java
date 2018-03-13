@@ -210,7 +210,7 @@ public class AccountResource {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(u ->
             persistentTokenRepository.findByUser(u).stream()
                 .filter(persistentToken -> StringUtils.equals(persistentToken.getSeries(), decodedSeries))
-                .findAny().ifPresent(t -> persistentTokenRepository.delete(decodedSeries)));
+                .findAny().ifPresent(t -> persistentTokenRepository.deleteById(decodedSeries)));
     }
 
     /**
