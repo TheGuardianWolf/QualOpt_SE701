@@ -63,14 +63,15 @@ spring:
 
         # jhipster-needle-add-social-configuration
 
-security:
-    basic:
-        enabled: false
+# security:
+#     basic:
+#         enabled: false
 
 server:
-    session:
-        cookie:
-            http-only: true
+    servlet:
+        session:
+            cookie:
+                http-only: true
 
 info:
     project:
