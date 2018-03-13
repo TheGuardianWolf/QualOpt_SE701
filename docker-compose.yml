@@ -2,7 +2,7 @@ version: '2'
 services:
     qualopt-app:
         build: .
-        command: /bin/bash -c './mvnw & yarn install && yarn start'
+        command: /bin/bash -c '(./mvnw clean && ./mvnw) & (yarn install && yarn start)'
         stdin_open: true
         tty: true
         environment:
