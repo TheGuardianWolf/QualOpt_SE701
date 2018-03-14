@@ -279,10 +279,10 @@
             <artifactId>mapstruct-jdk8</artifactId>
             <version>${mapstruct.version}</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
         <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-properties-migrator</artifactId>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
@@ -364,6 +364,11 @@
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
         <!-- Spring Cloud -->
         <dependency>
