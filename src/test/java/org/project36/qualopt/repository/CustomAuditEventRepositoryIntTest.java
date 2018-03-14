@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.time.Instant;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,7 +86,7 @@ public class CustomAuditEventRepositoryIntTest {
         assertThat(event.getType()).isEqualTo(testUserEvent.getAuditEventType());
         assertThat(event.getData()).containsKey("test-key");
         assertThat(event.getData().get("test-key").toString()).isEqualTo("test-value");
-        assertThat(event.getTimestamp()).isEqualTo(Date.from(testUserEvent.getAuditEventDate()));
+        assertThat(event.getTimestamp()).isEqualTo(testUserEvent.getAuditEventDate());
     }
 
     @Test
@@ -104,7 +103,7 @@ public class CustomAuditEventRepositoryIntTest {
         assertThat(event.getType()).isEqualTo(testUserEvent.getAuditEventType());
         assertThat(event.getData()).containsKey("test-key");
         assertThat(event.getData().get("test-key").toString()).isEqualTo("test-value");
-        assertThat(event.getTimestamp()).isEqualTo(Date.from(testUserEvent.getAuditEventDate()));
+        assertThat(event.getTimestamp()).isEqualTo(testUserEvent.getAuditEventDate());
     }
 
     @Test
@@ -150,7 +149,7 @@ public class CustomAuditEventRepositoryIntTest {
         assertThat(event.getType()).isEqualTo(testUserEvent.getAuditEventType());
         assertThat(event.getData()).containsKey("test-key");
         assertThat(event.getData().get("test-key").toString()).isEqualTo("test-value");
-        assertThat(event.getTimestamp()).isEqualTo(Date.from(testUserEvent.getAuditEventDate()));
+        assertThat(event.getTimestamp()).isEqualTo(testUserEvent.getAuditEventDate());
     }
 
     @Test
