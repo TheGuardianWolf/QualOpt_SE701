@@ -22,6 +22,8 @@ management:
         mail:
             enabled: false # When using the MailService, configure an SMTP server and set this to true
 spring:
+    aop:
+        proxy-target-class: false
     application:
         name: QualOpt
     profiles:
