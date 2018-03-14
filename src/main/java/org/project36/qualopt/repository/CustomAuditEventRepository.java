@@ -34,23 +34,11 @@ public class CustomAuditEventRepository implements AuditEventRepository {
 
     @Override
     public List<AuditEvent> find(String principal, Instant after, String type) {
-        Iterable<PersistentAuditEvent> persistentAuditEvents;
-        if(principal == null && after == null && type == null) {
-            persistentAuditEvents = persistenceAuditEventRepository.findAll();
-        }
-        else if (after == null && type == null) {
-            persistentAuditEvents = persistenceAuditEventRepository.findByPrincipal(principal);
-        }
-        else if (principal == null && type == null) {
-            persistentAuditEvents = persistenceAuditEventRepository.findByAuditEventDateAfter(after);
-        }
-        else if (type == null) {
-            persistentAuditEvents = persistenceAuditEventRepository.findByPrincipalAndAuditEventDateAfter(principal, after);
-        }
-        else {
-            persistentAuditEvents = persistenceAuditEventRepository.findByPrincipalAndAuditEventDateAfterAndAuditEventType(principal, after, type);
-        }
-        return auditEventConverter.convertToAuditEvent(persistentAuditEvents);
+        List<PersistentAuditEvent> repoEvents = persistenceAuditEventRepository.findAll();
+        repoEvents.removeIf((event) -> {
+            return event == null || !isMatch(principal, after, type, event);
+        });
+        return auditEventConverter.convertToAuditEvent(repoEvents);
     }
 
     @Override
@@ -67,4 +55,13 @@ public class CustomAuditEventRepository implements AuditEventRepository {
             persistenceAuditEventRepository.save(persistentAuditEvent);
         }
     }
+
+    private boolean isMatch(String principal, Instant after, String type,
+			PersistentAuditEvent event) {
+		boolean match = true;
+		match = match && (principal == null || event.getPrincipal().equals(principal));
+		match = match && (after == null || event.getAuditEventDate().isAfter(after));
+		match = match && (type == null || event.getAuditEventType().equals(type));
+		return match;
+	}
 }
