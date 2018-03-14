@@ -21,6 +21,8 @@ public class SpringSecurityAuditorAware implements AuditorAware<String> {
             userLogin = Constants.SYSTEM_ACCOUNT;
         }
 
-        return Optional.ofNullable(userLogin);
+        Optional<String> oUserLogin = Optional.ofNullable(userLogin);
+
+        return oUserLogin;
     }
 }
