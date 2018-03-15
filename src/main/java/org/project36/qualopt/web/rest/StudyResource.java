@@ -137,7 +137,7 @@ public class StudyResource {
     @Timed
     public ResponseEntity<Void> deleteStudy(@PathVariable Long id) {
         log.debug("REST request to delete Study : {}", id);
-        studyRepository.delete(id);
+        studyRepository.deleteById(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 

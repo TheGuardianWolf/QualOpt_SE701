@@ -25,7 +25,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.any; 
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -243,7 +243,7 @@ public class StudyResourceIntTest {
         int databaseSizeBeforeUpdate = studyRepository.findAll().size();
 
         // Update the study
-        Study updatedStudy = studyRepository.findOne(study.getId());
+        Study updatedStudy = studyRepository.getOne(study.getId());
         updatedStudy
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)
