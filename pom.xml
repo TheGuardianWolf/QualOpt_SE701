@@ -22,6 +22,8 @@
     <name>Qual Opt</name>
 
     <properties>
+        <start-class>org.project36.qualopt.QualOptApp</start-class>
+
         <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx256m</argLine>
         <assertj.version>3.6.2</assertj.version>
         <awaitility.version>2.0.0</awaitility.version>
@@ -112,6 +114,13 @@
 
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.kohsuke/github-api -->
+        <dependency>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>github-api</artifactId>
+            <version>1.92</version>
+        </dependency>
+
         <dependency>
             <groupId>io.github.jhipster</groupId>
             <artifactId>jhipster</artifactId>
@@ -432,6 +441,20 @@
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-twitter</artifactId>
             <version>${spring-social-twitter.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/de.saly/javamail-mock2-fullmock -->
+        <dependency>
+            <groupId>de.saly</groupId>
+            <artifactId>javamail-mock2-fullmock</artifactId>
+            <version>0.5-beta4</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/de.saly/javamail-mock2-fullmock -->
+        <dependency>
+            <groupId>de.saly</groupId>
+            <artifactId>javamail-mock2-fullmock</artifactId>
+            <version>0.5-beta4</version>
+            <scope>test</scope>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
